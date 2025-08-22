@@ -12,7 +12,7 @@ function Cart({ onClose }) {
       <button className="close-btn" onClick={onClose}>×</button>
       <h2>Votre Panier</h2>
 
-      {cart.length === 0 && <p>Votre panier est vide.</p>}
+      {cart.length === 0 && <p>Votre panier est passé.</p>}
 
       {cart.map((item) => (
         <div key={item.id} className="cart-item">
