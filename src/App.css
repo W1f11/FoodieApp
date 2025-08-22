@@ -11,6 +11,10 @@ body{
     color: #568F87;
     
 }
+
+html {
+  scroll-behavior: smooth;
+}
 .hero-section {
   display: flex;
   align-items: center;

@@ -26,8 +26,8 @@ function RestaurantsList() {
 
   return (
     <div>
-      <h1>Restaurants</h1>
-      <div className="restaurants-container">
+      <h1 id="restaurants-container">Restaurants</h1>
+      <div className="restaurants-container" >
   {restaurants.map((r) => (
     <div className="restaurant-card" key={r.restaurantID}>
       <Link to={`/restaurant/${r.restaurantID}`}>

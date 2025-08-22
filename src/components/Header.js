@@ -17,10 +17,13 @@ const Header = ({ onCartClick }) => {
       <nav className="navbar">
         <ul className="nav-links">
           <li>
-            <a href="/" className="nav-link">Accueil</a>
+            <a href="#" className="nav-link">Accueil</a>
           </li>
           <li>
-            <a href="/#menu" className="nav-link">Menu</a>
+            <a href="#restaurants-container" className="nav-link">Restaurant</a>
+          </li>
+          <li>
+            <a href="/" className="nav-link">Menu</a>
           </li>
           <li>
             <button className="nav-link cart-link" onClick={onCartClick}>
