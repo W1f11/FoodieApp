@@ -1,70 +1,119 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🍽️ FoodieApp
 
-## Available Scripts
+Application web de gestion de restaurants et menus avec panier.  
+Développée en **React.js** avec **Redux Toolkit** pour la gestion d’état.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1. Cloner le projet
+```bash
+git clone https://github.com/W1f11/FoodieApp.git
+cd foodieapp
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2. Installer les dépendances
+```bash
+npm install
+```
 
-### `npm test`
+### 3. Lancer l’application
+```bash
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+L’application sera disponible sur `http://localhost:3000/`.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠️ Choix techniques
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### ⚛️ Frontend : React.js
+- **React Router** pour la navigation (`/restaurants`, `/restaurant/:id`, `/cart`).
+- **Composants fonctionnels + Hooks** (`useState`, `useEffect`, `useSelector`, `useDispatch`).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 📦 Gestion d’état : Redux Toolkit
+- Utilisation de `createSlice` et `createAsyncThunk` pour gérer :
+  - `restaurants` → liste des restaurants
+  - `menu` → menu d’un restaurant
+  - `cart` → panier (ajout, suppression, quantité, vider)
+- Avantages :
+  - Centralisation de l’état (pas besoin de prop drilling).
+  - Lisibilité et maintenabilité.
+  - Gestion facile des états asynchrones (loading / error).
 
-### `npm run eject`
+### 🔄 Alternatives envisagées
+- **Redux** (plus léger, syntaxe plus simple) → abandonné car Redux Toolkit offre une meilleure structure pour un projet évolutif.
+- **Context API** → suffisant pour de petits projets, mais moins optimisé pour des données complexes comme le panier.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### ⚠️ Gestion des erreurs
+- Les appels API sont gérés avec `createAsyncThunk` (Redux Toolkit).
+- Chaque requête possède 3 états :
+  - `pending` → chargement (`loading = true`)
+  - `fulfilled` → données reçues
+  - `rejected` → erreur (`error` affichée dans l’UI)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Exemple dans un composant :
+```jsx
+if (loading) return <p>Chargement...</p>;
+if (error) return <p style={{ color: "red" }}>Erreur : {error}</p>;
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### ⚡ Optimisations
+- **Pagination** : menus découpés en pages de 10 items pour éviter l’affichage massif.
+- **Redux DevTools** activé → debug facile.
+- **Séparation des slices** :  `cartSlice` → logique claire.
+- **Composants réutilisables** : `RestaurantList`, `RestaurantDetail`, `Cart`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 📂 Structure du projet
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+src/
+ ├── api/               # Ancienne logique fetch (remplacée par Redux)
+ ├── store/
+ │    ├── store.js      # Configuration Redux
+ │    ├── cartSlice.js  # Panier
+ │     # Restaurants & Menus
+ ├── components/
+ │    ├── Cart.jsx
+ │    ├── RestaurantsList.js
+ │    └── RestaurantDetail.js
+ ├── App.js
+ ├── main.js
+ └── index.css
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🛒 Fonctionnalités principales
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Voir la liste des restaurants.
+- Voir le menu d’un restaurant.
+- Ajouter un plat au panier.
+- Modifier la quantité d’un plat.
+- Supprimer un plat du panier.
+- Vider le panier.
+- Pagination des menus (10 plats par page).
+- Navigation fluide avec React Router.
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🔮 Améliorations futures
 
-### Making a Progressive Web App
+- Authentification utilisateur.
+- Système de favoris.
+- Sauvegarde du panier dans `Redux`.
+- Déploiement sur Github.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 👩‍💻 Développement
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React 18 + Vite
+- Redux Toolkit
+- React Router v6
+- CSS 
